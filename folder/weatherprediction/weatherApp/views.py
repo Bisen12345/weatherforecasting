@@ -6,12 +6,13 @@ import json
 def  index(request):
     if request.method=='POST':
         city=request.POST['city']
-        source=urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=d3bf6a4c0850ad14836095f918b10c3d').read()
+        source=urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=45b01a7f6a9893cc9370a6fd91f105fb').read()
         list_of_data=json.loads(source)
+        print(list_of_data)
 
         data={
             "country_code" : str(list_of_data['sys']['country']),
-            "coordinate" : str(list_of_data['coord']['ion']) + ', '+ str(list_of_data['coord']['lat']),
+            "coordinate" : str(list_of_data['coord']['lon']) + ', '+ str(list_of_data['coord']['lat']),
             "temp" : str(list_of_data['main']['temp']) + ' °C',
             "pressure": str(list_of_data['main']['pressure']),
             "humidity": str(list_of_data['main']['humidity']),
